@@ -1,0 +1,16 @@
+{
+  "name": "com.pepevents",
+  "displayName": "PEPEvents",
+  "version": "1.0.0",
+  "unity": "2018.4",
+  "license": "MIT",
+  "description": "PEPEvents is an Event system for the Unity.",
+  "keywords": [
+    "events",
+    "pepe",
+    "optimization"
+  ],
+  "category": "game tool",
+  "dependencies": {  },
+  "samples": []
+}
