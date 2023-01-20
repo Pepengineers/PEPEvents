@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using PEPEvents.Interface;
-using PEPools.Interfaces;
 
 namespace PEPEvents.Implementation
 {

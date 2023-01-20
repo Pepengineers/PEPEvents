@@ -2,7 +2,6 @@
 using System.Text;
 using PEPEvents.Implementation;
 using UnityEditor;
-using UnityEngine;
 
 namespace PEPEvents.Debug
 {
