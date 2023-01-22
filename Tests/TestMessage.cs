@@ -1,6 +1,6 @@
 using PEPEvents.Interface;
 
-namespace GameAssets.Code.Events.Tests
+namespace PEPEvents.Tests
 {
 	public readonly struct TestMessage : IMessage
 	{

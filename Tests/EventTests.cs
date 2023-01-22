@@ -1,9 +1,11 @@
+using System.Collections;
 using NUnit.Framework;
 using PEPEvents.Extensions;
 using PEPEvents.Implementation;
+using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace GameAssets.Code.Events.Tests
+namespace PEPEvents.Tests
 {
 	[RequiresPlayMode(false)]
 	public class EventTests
@@ -26,18 +28,10 @@ namespace GameAssets.Code.Events.Tests
 		}
 
 		[Test]
-		public void GlobalSubscription()
-		{
-			EventHub.Instance.Subscribe(broker, subscriber);
-			broker.RaiseMessage(message);
-			Assert.AreEqual(subscriber.OnNextValue, 1);
-		}
-
-		[Test]
 		public void TargetSubscription()
 		{
 			EventHub.Instance.Subscribe(broker, subscriber);
-			broker.RaiseMessage(message);
+			broker.Publish(message);
 			Assert.AreEqual(subscriber.OnNextValue, 1);
 		}
 
@@ -45,11 +39,25 @@ namespace GameAssets.Code.Events.Tests
 		public void TargetEventCount()
 		{
 			EventHub.Instance.Subscribe(broker, subscriber);
-			for (var i = 0; i < 10; i++) broker.RaiseMessage(message);
+			for (var i = 0; i < 10; i++) broker.Publish(message);
 
 			broker.Shutdown();
 
 			Assert.AreEqual(subscriber.OnNextValue, 10);
+		}
+
+
+		[UnityTest]
+		[RequiresPlayMode(true)]
+		public IEnumerator TargetGameEventSubscription()
+		{
+			var trigger = new GameObject("TestTrigger").AddComponent<TestEventTrigger>();
+			trigger.Subscribe(broker);
+			yield return null;
+
+			broker.Publish(message);
+			
+			Assert.AreEqual(trigger.Count, 1);
 		}
 	}
 }

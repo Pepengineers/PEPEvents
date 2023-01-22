@@ -1,6 +1,6 @@
 using PEPEvents.Interface;
 
-namespace GameAssets.Code.Events.Tests
+namespace PEPEvents.Tests
 {
 	internal sealed class TestSubscriber : ISubscriber<TestMessage>
 	{
