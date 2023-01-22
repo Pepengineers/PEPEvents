@@ -14,15 +14,22 @@ namespace PEPEvents.Implementation
 			if (userSubscriptions.TryGetValue(subscriber, out var subscriptions) == false) return;
 
 			subscriptions.Remove(broker, MessagePipe<T>.MessageType);
-			if (subscriptions.Count <= 0) userSubscriptions.Remove(subscriber);
+			if (subscriptions.Count <= 0)
+			{
+				userSubscriptions.Remove(subscriber);
+			}
 		}
 
 		public void UnsubscribeAll(ISubscriber subscriber)
 		{
-			if (userSubscriptions.TryGetValue(subscriber, out var targetSubscriptions))
+			if (userSubscriptions.Remove(subscriber, out var targetSubscriptions))
+			{
+				foreach (var broker in targetSubscriptions.Brokers)
+				{
+					brokerSubscriptions[broker].Remove(targetSubscriptions);
+				}
 				targetSubscriptions.RemoveAll();
-
-			userSubscriptions.Remove(subscriber);
+			}
 		}
 
 		public void UnsubscribeAll(IBroker broker)
@@ -32,7 +39,8 @@ namespace PEPEvents.Implementation
 				foreach (var subscription in subscriptions)
 				{
 					subscription.Remove(broker);
-					if (subscriptions.Count <= 0) userSubscriptions.Remove(subscription.Subscriber);
+					if (subscriptions.Count <= 0) 
+						userSubscriptions.Remove(subscription.Subscriber);
 				}
 
 				subscriptions.Clear();
@@ -50,19 +58,18 @@ namespace PEPEvents.Implementation
 			if (brokerSubscriptions.TryGetValue(broker, out var brokerTargetSubscriptions) == false)
 				brokerTargetSubscriptions = new HashSet<TargetSubscriptions>();
 
+
+			
 			brokerTargetSubscriptions.Add(targetSubscriptions);
 			targetSubscriptions.Add(broker, MessagePipe<T>.MessageType, MessagePipe<T>.Subscribe(broker, subscriber));
 		}
 
 		public void Publish<T>(T msg, IBroker broker) where T : struct, IMessage
 		{
-			if (ReferenceEquals(broker, null) == false)
-				MessagePipe<T>.Publish(msg, broker);
-		}
-
-		public void Remove<T>(IBroker broker) where T : struct, IMessage
-		{
-			MessagePipe<T>.Remove(broker);
+#if UNITY_EDITOR || DEBUG
+			UnityEngine.Debug.Log($"#Events# {broker.GetType().FullName} raise event {MessagePipe<T>.MessageType.Name}");
+#endif
+			MessagePipe<T>.Publish(msg, broker);
 		}
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace PEPEvents.Base
 {
-	public abstract class GameEventListener<TMessage, TEvent, TUnityAction> : GameEventSubscriber<TMessage, TEvent>
+	public abstract class GameEventListener<TMessage, TEvent> : GameEventSubscriber<TMessage, TEvent>
 		where TMessage : struct, IMessage
 		where TEvent : GameEvent<TMessage>
 	{

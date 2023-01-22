@@ -23,10 +23,6 @@ namespace PEPEvents.Implementation
 			if (subscriber == null)
 				throw new ArgumentNullException(nameof(subscriber));
 
-#if UNITY_EDITOR || DEBUG
-			UnityEngine.Debug.Log(
-				$"#Events# {subscriber.GetType().Name} subscribe to {MessageType.Name} in {broker.GetType().FullName}");
-#endif
 			if (Listeners.TryGetValue(broker, out var subscribers))
 			{
 				if (subscribers.Contains(subscriber) == false)
@@ -43,36 +39,16 @@ namespace PEPEvents.Implementation
 
 		internal static void Publish(TMessage msg, IBroker broker)
 		{
-			if (ReferenceEquals(broker, null))
-				return;
-
-#if UNITY_EDITOR || DEBUG
-			UnityEngine.Debug.Log($"#Events# {broker.GetType().FullName} raise event {MessageType.Name}");
-#endif
-
 			if (Listeners.TryGetValue(broker, out var subscribers))
 			{
 				Publish(subscribers, msg);
 			}
 		}
-
-		internal static void Remove(IBroker broker)
-		{
-			if (Listeners.TryGetValue(broker, out var subscribers))
-				while (subscribers.Count != 0)
-				{
-					var subscriber = subscribers[0];
-					subscriber.Unsubscribe(broker);
-				}
-
-			Listeners.Remove(broker);
-		}
 		
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void Publish(IReadOnlyList<ISubscriber<TMessage>> subscribers, TMessage message)
 		{
-			var count = subscribers.Count;
-			for (var i = 0; i < count; i++)
+			for (var i = subscribers.Count - 1; i >= 0; i--)
 			{
 				var subscriber = subscribers[i];
 				Publish(subscriber, message);

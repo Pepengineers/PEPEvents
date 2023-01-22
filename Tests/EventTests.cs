@@ -30,7 +30,7 @@ namespace PEPEvents.Tests
 		[Test]
 		public void TargetSubscription()
 		{
-			EventHub.Instance.Subscribe(broker, subscriber);
+			broker.Subscribe(subscriber);
 			broker.Publish(message);
 			Assert.AreEqual(subscriber.OnNextValue, 1);
 		}
@@ -38,7 +38,7 @@ namespace PEPEvents.Tests
 		[Test]
 		public void TargetEventCount()
 		{
-			EventHub.Instance.Subscribe(broker, subscriber);
+			broker.Subscribe(subscriber);
 			for (var i = 0; i < 10; i++) broker.Publish(message);
 
 			broker.Shutdown();

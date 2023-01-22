@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace PEPEvents.Debug
 {
-	public static class DebugEventHub
+	public static class DebugEvents
 	{
 		private static readonly StringBuilder Builder = new StringBuilder();
 
@@ -14,7 +14,7 @@ namespace PEPEvents.Debug
 		{
 			Builder.Clear();
 			Builder.AppendLine("EventHub DUMP");
-			var subscriptions = EventHub.Instance.Subscriptions;
+			var subscriptions = EventsManager.Instance.Subscriptions;
 			Builder.AppendLine($"Alive subscriptions {subscriptions.Count}");
 			foreach (var subscription in subscriptions)
 			{
