@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using PEPEvents.Interface;
 
-namespace PEPEvents.Interface
+namespace PEPEvents.Implementation.Interfaces
 {
-	public interface IEventBus
+	internal interface IEventBus
 	{
 		IReadOnlyCollection<ISubscriptions> Subscriptions { get; }
 		void Subscribe<T>(IBroker broker, ISubscriber<T> subscriber) where T : struct, IMessage;

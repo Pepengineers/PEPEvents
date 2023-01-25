@@ -1,9 +1,8 @@
-﻿using System;
-using PEPEvents.Extensions;
+﻿using PEPEvents.Extensions;
 using PEPEvents.Interface;
 using UnityEngine;
 
-namespace PEPEvents.Base
+namespace PEPEvents.Runtime
 {
 	public abstract class GameEventSubscriber<TMessage, TEvent> : MonoBehaviour, ISubscriber<TMessage> 
 		where TMessage : struct, IMessage

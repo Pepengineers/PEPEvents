@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PEPEvents.Implementation.Interfaces;
 using PEPEvents.Interface;
 
 namespace PEPEvents.Implementation
@@ -58,8 +59,6 @@ namespace PEPEvents.Implementation
 			if (brokerSubscriptions.TryGetValue(broker, out var brokerTargetSubscriptions) == false)
 				brokerTargetSubscriptions = new HashSet<TargetSubscriptions>();
 
-
-			
 			brokerTargetSubscriptions.Add(targetSubscriptions);
 			targetSubscriptions.Add(broker, MessagePipe<T>.MessageType, MessagePipe<T>.Subscribe(broker, subscriber));
 		}

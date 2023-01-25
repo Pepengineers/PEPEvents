@@ -1,8 +1,8 @@
-﻿using PEPEvents.Base;
+﻿using PEPEvents.Runtime;
 
 namespace PEPEvents.Tests
 {
-	internal sealed class TestEventTrigger : GameEventTrigger<TestMessage,TestGameEvent>
+	internal sealed class TestEventTrigger : GameEventTrigger<TestMessage>
 	{
 		public int Count = 0;
 		private void Awake()

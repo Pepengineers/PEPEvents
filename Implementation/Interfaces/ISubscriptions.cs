@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using PEPEvents.Interface;
 
-namespace PEPEvents.Interface
+namespace PEPEvents.Implementation.Interfaces
 {
-	public interface ISubscriptions
+	internal interface ISubscriptions
 	{
 		public ISubscriber Subscriber { get; }
 		

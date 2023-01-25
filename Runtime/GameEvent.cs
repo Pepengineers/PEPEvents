@@ -1,8 +1,7 @@
-﻿using System;
-using PEPEvents.Interface;
+﻿using PEPEvents.Interface;
 using UnityEngine;
 
-namespace PEPEvents.Base
+namespace PEPEvents.Runtime
 {
 	public abstract class GameEvent : ScriptableObject, IBroker
 	{
