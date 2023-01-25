@@ -11,9 +11,16 @@ namespace PEPEvents.Implementation
 
 		public IDisposable Create(ISubscriber<T> subscriber, ICollection<ISubscriber<T>> subscribers)
 		{
-			var subscription = freeSubscriptions.Any() 
-				? freeSubscriptions.First() : new Subscription<T>(freeSubscriptions);
-			
+			Subscription<T> subscription;
+			if (freeSubscriptions.Any())
+			{
+				var lastIndex = freeSubscriptions.Count - 1;
+				subscription = freeSubscriptions[lastIndex];
+				freeSubscriptions.RemoveAt(lastIndex);
+			}
+			else
+				subscription = new Subscription<T>(freeSubscriptions);
+
 			subscription.Subscriber = subscriber;
 			subscription.Subscribers = subscribers;
 			return subscription;
