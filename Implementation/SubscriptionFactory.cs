@@ -19,7 +19,9 @@ namespace PEPEvents.Implementation
 				freeSubscriptions.RemoveAt(lastIndex);
 			}
 			else
+			{
 				subscription = new Subscription<T>(freeSubscriptions);
+			}
 
 			subscription.Subscriber = subscriber;
 			subscription.Subscribers = subscribers;

@@ -14,13 +14,13 @@ namespace PEPEvents.Implementation
 		{
 			Subscriber = subscriber;
 		}
-		
+
+		public uint Count { get; private set; }
+
 		public ISubscriber Subscriber { get; }
 		public IEnumerable<IBroker> Brokers => subscriptions.Keys;
 		public IEnumerable<Type> MessageTypes => subscriptions.Values.SelectMany(v => v.Keys);
 		public IEnumerable<IDisposable> Subscriptions => subscriptions.Values.SelectMany(v => v.Values);
-
-		public uint Count { get; private set; } = 0;
 
 		public void Add(IBroker broker, Type type, IDisposable unsubscribe)
 		{
@@ -47,13 +47,15 @@ namespace PEPEvents.Implementation
 			if (subscriptions.TryGetValue(broker, out var brokerSubscriptions))
 			{
 #if UNITY_EDITOR || DEBUG
-				UnityEngine.Debug.Log($"#Events# {Subscriber.GetType().Name} unsubscribe from {broker.GetType().FullName}");
+				UnityEngine.Debug.Log(
+					$"#Events# {Subscriber.GetType().Name} unsubscribe from {broker.GetType().FullName}");
 #endif
 				if (brokerSubscriptions.TryGetValue(type, out var targetSubscriptions))
 				{
 					targetSubscriptions.Dispose();
 					Count--;
 				}
+
 				brokerSubscriptions.Remove(type);
 			}
 		}
@@ -66,11 +68,13 @@ namespace PEPEvents.Implementation
 				foreach (var brokerSubscription in brokerSubscriptions)
 				{
 #if UNITY_EDITOR || DEBUG
-					UnityEngine.Debug.Log($"#Events# {Subscriber.GetType().Name} unsubscribe from {broker.GetType().FullName}");
+					UnityEngine.Debug.Log(
+						$"#Events# {Subscriber.GetType().Name} unsubscribe from {broker.GetType().FullName}");
 #endif
 					brokerSubscription.Value.Dispose();
 					Count--;
 				}
+
 				brokerSubscriptions.Clear();
 			}
 		}
@@ -80,13 +84,15 @@ namespace PEPEvents.Implementation
 			foreach (var targetSubscriptions in subscriptions)
 			{
 #if UNITY_EDITOR || DEBUG
-				UnityEngine.Debug.Log($"#Events# {Subscriber.GetType().Name} unsubscribe from {targetSubscriptions.Key.GetType().FullName}");
+				UnityEngine.Debug.Log(
+					$"#Events# {Subscriber.GetType().Name} unsubscribe from {targetSubscriptions.Key.GetType().FullName}");
 #endif
 				foreach (var subscription in targetSubscriptions.Value.Values)
 				{
 					subscription.Dispose();
 					Count--;
 				}
+
 				targetSubscriptions.Value.Clear();
 			}
 

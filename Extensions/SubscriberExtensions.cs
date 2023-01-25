@@ -45,7 +45,7 @@ namespace PEPEvents.Extensions
 		{
 			EventsManager.Instance.UnsubscribeAll(subscriber);
 		}
-		
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void UnsubscribeAll(this IBroker broker)
 		{

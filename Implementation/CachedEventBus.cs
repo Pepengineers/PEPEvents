@@ -15,10 +15,7 @@ namespace PEPEvents.Implementation
 			if (userSubscriptions.TryGetValue(subscriber, out var subscriptions) == false) return;
 
 			subscriptions.Remove(broker, MessagePipe<T>.MessageType);
-			if (subscriptions.Count <= 0)
-			{
-				userSubscriptions.Remove(subscriber);
-			}
+			if (subscriptions.Count <= 0) userSubscriptions.Remove(subscriber);
 		}
 
 		public void UnsubscribeAll(ISubscriber subscriber)
@@ -26,9 +23,7 @@ namespace PEPEvents.Implementation
 			if (userSubscriptions.Remove(subscriber, out var targetSubscriptions))
 			{
 				foreach (var broker in targetSubscriptions.Brokers)
-				{
 					brokerSubscriptions[broker].Remove(targetSubscriptions);
-				}
 				targetSubscriptions.RemoveAll();
 			}
 		}
@@ -40,7 +35,7 @@ namespace PEPEvents.Implementation
 				foreach (var subscription in subscriptions)
 				{
 					subscription.Remove(broker);
-					if (subscriptions.Count <= 0) 
+					if (subscriptions.Count <= 0)
 						userSubscriptions.Remove(subscription.Subscriber);
 				}
 
@@ -66,7 +61,8 @@ namespace PEPEvents.Implementation
 		public void Publish<T>(T msg, IBroker broker) where T : struct, IMessage
 		{
 #if UNITY_EDITOR || DEBUG
-			UnityEngine.Debug.Log($"#Events# {broker.GetType().FullName} raise event {MessagePipe<T>.MessageType.Name}");
+			UnityEngine.Debug.Log(
+				$"#Events# {broker.GetType().FullName} raise event {MessagePipe<T>.MessageType.Name}");
 #endif
 			MessagePipe<T>.Publish(msg, broker);
 		}

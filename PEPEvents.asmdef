@@ -1,16 +1,16 @@
 {
-    "name": "PEPEvents",
-    "rootNamespace": "",
-    "references": [
-        "GUID:594c4ce19d4c1f844ae22e250bc0d553"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": true,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "PEPEvents",
+  "rootNamespace": "",
+  "references": [
+    "GUID:594c4ce19d4c1f844ae22e250bc0d553"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace PEPEvents.Runtime
 {
-	public abstract class GameEventSubscriber<TMessage, TEvent> : MonoBehaviour, ISubscriber<TMessage> 
+	public abstract class GameEventSubscriber<TMessage, TEvent> : MonoBehaviour, ISubscriber<TMessage>
 		where TMessage : struct, IMessage
 		where TEvent : GameEvent
 	{
 		[SerializeField] private TEvent gameEvent;
 		public ref readonly TEvent GameEvent => ref gameEvent;
-		
+
 		protected virtual void OnEnable()
 		{
-			if(gameEvent == null)
+			if (gameEvent == null)
 				return;
-			
+
 			gameEvent.Subscribe(this);
 		}
 

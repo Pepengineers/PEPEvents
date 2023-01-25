@@ -1,7 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
 using PEPEvents.Extensions;
-using PEPEvents.Implementation;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -48,7 +47,7 @@ namespace PEPEvents.Tests
 
 
 		[UnityTest]
-		[RequiresPlayMode(true)]
+		[RequiresPlayMode()]
 		public IEnumerator TargetGameEventSubscription()
 		{
 			var trigger = new GameObject("TestTrigger").AddComponent<TestEventTrigger>();
@@ -56,7 +55,7 @@ namespace PEPEvents.Tests
 			yield return null;
 
 			broker.Publish(message);
-			
+
 			Assert.AreEqual(trigger.Count, 1);
 		}
 	}

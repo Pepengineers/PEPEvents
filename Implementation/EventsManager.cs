@@ -1,5 +1,4 @@
 using PEPEvents.Implementation.Interfaces;
-using PEPEvents.Interface;
 
 namespace PEPEvents.Implementation
 {

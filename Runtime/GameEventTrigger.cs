@@ -14,7 +14,7 @@ namespace PEPEvents.Runtime
 			onTriggered?.Invoke();
 		}
 	}
-	
+
 	public abstract class GameEventTrigger<TMessage, TEvent> : GameEventSubscriber<TMessage, TEvent>
 		where TMessage : struct, IMessage
 		where TEvent : GameEvent<TMessage>

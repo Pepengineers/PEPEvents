@@ -1,6 +1,3 @@
-﻿using PEPEvents.Runtime;
-
-namespace PEPEvents.Tests
+﻿namespace PEPEvents.Tests
 {
-	
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using PEPEvents.Extensions;
 using PEPEvents.Interface;
 
 namespace PEPEvents.Implementation
@@ -39,12 +38,9 @@ namespace PEPEvents.Implementation
 
 		internal static void Publish(TMessage msg, IBroker broker)
 		{
-			if (Listeners.TryGetValue(broker, out var subscribers))
-			{
-				Publish(subscribers, msg);
-			}
+			if (Listeners.TryGetValue(broker, out var subscribers)) Publish(subscribers, msg);
 		}
-		
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void Publish(IReadOnlyList<ISubscriber<TMessage>> subscribers, TMessage message)
 		{
@@ -54,7 +50,7 @@ namespace PEPEvents.Implementation
 				Publish(subscriber, message);
 			}
 		}
-		
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static void Publish(ISubscriber<TMessage> subscriber, TMessage message)
 		{
