@@ -115,7 +115,7 @@ internal sealed class PressAnyKeyEvent : GameEvent<KeyChangeStatus> {}
 # GameEventSubscriber
 
 MonoBehaviour encapsulating GameEvent subscription mechanism 
-Needed if you want to implement OnNext(TMessage message) from the code
+Needed if you want to implement `OnNext(TMessage message)` from the code
 
 ```csharp
 
