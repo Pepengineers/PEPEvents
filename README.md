@@ -133,34 +133,18 @@ internal sealed class TestUnitySubscriber : GameEventSubscriber<TestMessage, Tes
 
 ```csharp
 
-internal sealed class TestUnityTrigger : GameEventTrigger<TestMessage, TestGameEvent>
+internal sealed class TestUnityTrigger : GameEventTrigger<TestMessage>
 {
 }
 
 ```
 ![изображение](https://user-images.githubusercontent.com/17476222/214702379-a0eac14c-9f15-4509-ae30-1fcb49278e7f.png)
 
-You can also specify the second type is not Generic GameEvent in order to be able to subscribe to any events
-
-
-```csharp
-
-internal sealed class TestUnityTrigger : GameEventTrigger<TestMessage, GameEvent>
-{
-}
-
-```
-
-# GameEventListener
-
-The same as GameEventTrigger but if your game component also gets data from the message.
-
-Contains UnityEvent<TMessage>
-
+There is an extended version if your game component also want gets data from the message.
 
 ```csharp
 
-internal sealed class TestUnityListener : GameEventListener<TestMessage, TestGameEvent>
+internal sealed class TestUnityListener : TestUnityTrigger<TestMessage, TestGameEvent>
 {
 }
 
