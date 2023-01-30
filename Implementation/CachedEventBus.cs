@@ -23,7 +23,9 @@ namespace PEPEvents.Implementation
 			if (userSubscriptions.Remove(subscriber, out var targetSubscriptions))
 			{
 				foreach (var broker in targetSubscriptions.Brokers)
-					brokerSubscriptions[broker].Remove(targetSubscriptions);
+					if (brokerSubscriptions.TryGetValue(broker, out var brokerTargetSubscriptions))
+						brokerTargetSubscriptions.Remove(targetSubscriptions);
+
 				targetSubscriptions.RemoveAll();
 			}
 		}
