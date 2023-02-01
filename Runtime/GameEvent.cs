@@ -7,7 +7,7 @@ namespace PEPEvents.Runtime
 	{
 	}
 
-	public abstract class GameEvent<TMessage> : GameEvent
+	public abstract class GameEvent<TMessage> : GameEvent, IBroker<TMessage>
 		where TMessage : struct, IMessage
 	{
 	}

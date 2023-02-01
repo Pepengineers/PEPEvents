@@ -26,7 +26,7 @@ namespace PEPEvents.Implementation
 		{
 #if UNITY_EDITOR || DEBUG
 			UnityEngine.Debug.Log(
-				$"#Events# {Subscriber.GetType().Name} subscribe to {type.Name} in {broker.GetType().FullName}");
+				$"#Events# {Subscriber.GetType().Name} subscribe to {type.Name} in {broker.GetType().Name}");
 #endif
 			if (subscriptions.TryGetValue(broker, out var brokerSubs))
 			{
