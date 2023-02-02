@@ -47,17 +47,22 @@ namespace PEPEvents.Implementation
 
 		public void Subscribe<T>(IBroker broker, ISubscriber<T> subscriber) where T : struct, IMessage
 		{
-			if (userSubscriptions.TryGetValue(subscriber, out var targetSubscriptions) == false)
+			if (userSubscriptions.TryGetValue(subscriber, out var targetUserSubscriptions) == false)
 			{
-				targetSubscriptions = new TargetSubscriptions(subscriber);
-				userSubscriptions.Add(subscriber, targetSubscriptions);
+				targetUserSubscriptions = new TargetSubscriptions(subscriber);
+				userSubscriptions.Add(subscriber, targetUserSubscriptions);
 			}
 
-			if (brokerSubscriptions.TryGetValue(broker, out var brokerTargetSubscriptions) == false)
-				brokerTargetSubscriptions = new HashSet<TargetSubscriptions>();
+			if (brokerSubscriptions.TryGetValue(broker, out var targetBrokerSubscriptions) == false)
+			{
+				targetBrokerSubscriptions = new HashSet<TargetSubscriptions>();
+				brokerSubscriptions.Add(broker, targetBrokerSubscriptions);
+			}
 
-			brokerTargetSubscriptions.Add(targetSubscriptions);
-			targetSubscriptions.Add(broker, MessagePipe<T>.MessageType, MessagePipe<T>.Subscribe(broker, subscriber));
+			targetBrokerSubscriptions.Add(targetUserSubscriptions);
+
+			targetUserSubscriptions.AddIfNotExist(broker, MessagePipe<T>.MessageType,
+				() => MessagePipe<T>.Subscribe(broker, subscriber));
 		}
 
 		public void Publish<T>(T msg, IBroker broker) where T : struct, IMessage

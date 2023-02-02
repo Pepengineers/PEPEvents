@@ -22,26 +22,29 @@ namespace PEPEvents.Implementation
 		public IEnumerable<Type> MessageTypes => subscriptions.Values.SelectMany(v => v.Keys);
 		public IEnumerable<IDisposable> Subscriptions => subscriptions.Values.SelectMany(v => v.Values);
 
-		public void Add(IBroker broker, Type type, IDisposable unsubscribe)
+		public void AddIfNotExist(in IBroker broker,in Type type,in Func<IDisposable> unsubscribeFactory)
 		{
+			if (subscriptions.TryGetValue(broker, out var brokerSubs))
+			{
+				if (brokerSubs.ContainsKey(type)) 
+					return;
+			}
+			else
+			{
+				brokerSubs = new Dictionary<Type, IDisposable>();
+				subscriptions.Add(broker, brokerSubs);
+			}
+
 #if UNITY_EDITOR || DEBUG
 			UnityEngine.Debug.Log(
 				$"#Events# {Subscriber.GetType().Name} subscribe to {type.Name} in {broker.GetType().Name}");
 #endif
-			if (subscriptions.TryGetValue(broker, out var brokerSubs))
-			{
-				brokerSubs.Add(type, unsubscribe);
-			}
-			else
-			{
-				brokerSubs = new Dictionary<Type, IDisposable> { { type, unsubscribe } };
-				subscriptions.Add(broker, brokerSubs);
-			}
+			brokerSubs.Add(type, unsubscribeFactory());
 
 			Count++;
 		}
 
-		public void Remove(IBroker broker, Type type)
+		public void Remove(in IBroker broker,in Type type)
 		{
 			if (Count <= 0) return;
 			if (subscriptions.TryGetValue(broker, out var brokerSubscriptions))
@@ -60,7 +63,7 @@ namespace PEPEvents.Implementation
 			}
 		}
 
-		public void Remove(IBroker broker)
+		public void Remove(in IBroker broker)
 		{
 			if (Count <= 0) return;
 			if (subscriptions.Remove(broker, out var brokerSubscriptions))
