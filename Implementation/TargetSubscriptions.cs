@@ -51,11 +51,11 @@ namespace PEPEvents.Implementation
 			{
 #if UNITY_EDITOR || DEBUG
 				UnityEngine.Debug.Log(
-					$"#Events# {Subscriber.GetType().Name} unsubscribe from {broker.GetType().FullName}");
+					$"#Events# {Subscriber.GetType().Name} unsubscribe from {type.Name} in {broker.GetType().Name}");
 #endif
-				if (brokerSubscriptions.TryGetValue(type, out var targetSubscriptions))
+				if (brokerSubscriptions.TryGetValue(type, out var targetSubscription))
 				{
-					targetSubscriptions.Dispose();
+					targetSubscription.Dispose();
 					Count--;
 				}
 
@@ -72,7 +72,7 @@ namespace PEPEvents.Implementation
 				{
 #if UNITY_EDITOR || DEBUG
 					UnityEngine.Debug.Log(
-						$"#Events# {Subscriber.GetType().Name} unsubscribe from {broker.GetType().FullName}");
+						$"#Events# {Subscriber.GetType().Name} unsubscribe from {brokerSubscription.Key.Name} in {broker.GetType().Name}");
 #endif
 					brokerSubscription.Value.Dispose();
 					Count--;
@@ -84,15 +84,17 @@ namespace PEPEvents.Implementation
 
 		public void RemoveAll()
 		{
+			if (Count <= 0) return;
 			foreach (var targetSubscriptions in subscriptions)
 			{
-#if UNITY_EDITOR || DEBUG
-				UnityEngine.Debug.Log(
-					$"#Events# {Subscriber.GetType().Name} unsubscribe from {targetSubscriptions.Key.GetType().FullName}");
-#endif
-				foreach (var subscription in targetSubscriptions.Value.Values)
+				foreach (var pair in targetSubscriptions.Value)
 				{
-					subscription.Dispose();
+#if UNITY_EDITOR || DEBUG
+					UnityEngine.Debug.Log(
+						$"#Events# {Subscriber.GetType().Name} unsubscribe from {pair.Key.Name} in {targetSubscriptions.Key.GetType().Name}");
+#endif
+					
+					pair.Value.Dispose();
 					Count--;
 				}
 
