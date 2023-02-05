@@ -7,7 +7,7 @@ namespace PEPEvents.Tests
 	{
 		public void Shutdown()
 		{
-			this.UnsubscribeAll();
+			
 		}
 	}
 }

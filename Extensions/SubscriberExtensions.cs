@@ -13,28 +13,14 @@ namespace PEPEvents.Extensions
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Subscribe<TMessage>(this ISubscriber<TMessage> subscriber, IBroker broker)
+		public static void Subscribe<TMessage>(this IBroker broker, ISubscriber<TMessage> subscriber)
 			where TMessage : struct, IMessage
 		{
 			EventsManager.Instance.Subscribe(broker, subscriber);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Subscribe<TMessage>(this IBroker broker, ISubscriber<TMessage> subscriber)
-			where TMessage : struct, IMessage
-		{
-			Subscribe(subscriber, broker);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Subscribe<TMessage>(this IBroker<TMessage> broker, ISubscriber<TMessage> subscriber)
-			where TMessage : struct, IMessage
-		{
-			Subscribe(subscriber, broker);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Subscribe<TMessage>(this ISubscriber<TMessage> subscriber, IBroker<TMessage> broker)
 			where TMessage : struct, IMessage
 		{
 			EventsManager.Instance.Subscribe(broker, subscriber);
@@ -62,7 +48,7 @@ namespace PEPEvents.Extensions
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void UnsubscribeAll(this IBroker broker)
+		public static void Done(this IBroker broker)
 		{
 			EventsManager.Instance.UnsubscribeAll(broker);
 		}

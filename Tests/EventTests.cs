@@ -51,7 +51,7 @@ namespace PEPEvents.Tests
 		public IEnumerator TargetGameEventSubscription()
 		{
 			var trigger = new GameObject("TestTrigger").AddComponent<TestEventTrigger>();
-			trigger.Subscribe(broker);
+			broker.Subscribe(trigger);
 			yield return null;
 
 			broker.Publish(message);
