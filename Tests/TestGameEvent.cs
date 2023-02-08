@@ -1,6 +1,6 @@
-using PEPEvents.Runtime;
+using PEPEngineers.PEPEvents.Runtime;
 
-namespace PEPEvents.Tests
+namespace PEPEngineers.PEPEvents.Tests
 {
 	internal sealed class TestGameEvent : GameEvent
 	{

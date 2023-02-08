@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Implementation
+namespace PEPEngineers.PEPEvents.Implementation
 {
 	internal sealed class Subscription<T> : IDisposable where T : struct, IMessage
 	{

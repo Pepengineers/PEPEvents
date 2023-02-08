@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Text;
-using PEPEvents.Implementation;
+using PEPEngineers.PEPEvents.Implementation;
 using UnityEditor;
 
-namespace PEPEvents.Debug
+namespace PEPEngineers.PEPEvents.Debug
 {
 	public static class DebugEvents
 	{

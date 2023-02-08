@@ -1,6 +1,6 @@
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Tests
+namespace PEPEngineers.PEPEvents.Tests
 {
 	public readonly struct TestMessage : IMessage
 	{

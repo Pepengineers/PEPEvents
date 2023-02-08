@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PEPEvents.Implementation.Interfaces;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Implementation.Interfaces;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Implementation
+namespace PEPEngineers.PEPEvents.Implementation
 {
 	internal sealed class TargetSubscriptions : ISubscriptions
 	{

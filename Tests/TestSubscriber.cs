@@ -1,6 +1,6 @@
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Tests
+namespace PEPEngineers.PEPEvents.Tests
 {
 	internal sealed class TestSubscriber : ISubscriber<TestMessage>
 	{

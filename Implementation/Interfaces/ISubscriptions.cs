@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Implementation.Interfaces
+namespace PEPEngineers.PEPEvents.Implementation.Interfaces
 {
 	internal interface ISubscriptions
 	{

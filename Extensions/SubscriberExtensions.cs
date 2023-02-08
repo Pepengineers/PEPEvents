@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
-using PEPEvents.Implementation;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Implementation;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Extensions
+namespace PEPEngineers.PEPEvents.Extensions
 {
 	public static class SubscriberExtensions
 	{

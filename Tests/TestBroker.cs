@@ -1,7 +1,6 @@
-using PEPEvents.Extensions;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Tests
+namespace PEPEngineers.PEPEvents.Tests
 {
 	internal sealed class TestBroker : IBroker
 	{

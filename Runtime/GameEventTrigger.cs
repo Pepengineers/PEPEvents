@@ -1,8 +1,8 @@
-﻿using PEPEvents.Interface;
+﻿using PEPEngineers.PEPEvents.Interface;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace PEPEvents.Runtime
+namespace PEPEngineers.PEPEvents.Runtime
 {
 	public abstract class GameEventTrigger<TMessage> : GameEventSubscriber<TMessage, GameEvent>
 		where TMessage : struct, IMessage

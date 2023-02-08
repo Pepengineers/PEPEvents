@@ -1,10 +1,10 @@
 using System.Collections;
 using NUnit.Framework;
-using PEPEvents.Extensions;
+using PEPEngineers.PEPEvents.Extensions;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace PEPEvents.Tests
+namespace PEPEngineers.PEPEvents.Tests
 {
 	[RequiresPlayMode(false)]
 	public class EventTests

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Implementation
+namespace PEPEngineers.PEPEvents.Implementation
 {
 	internal static class MessagePipe<TMessage> where TMessage : struct, IMessage
 	{

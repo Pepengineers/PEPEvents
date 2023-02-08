@@ -1,4 +1,4 @@
-namespace PEPEvents.Interface
+namespace PEPEngineers.PEPEvents.Interface
 {
 	public interface IBroker
 	{

@@ -1,3 +1,3 @@
-﻿namespace PEPEvents.Tests
+﻿namespace PEPEngineers.PEPEvents.Tests
 {
 }

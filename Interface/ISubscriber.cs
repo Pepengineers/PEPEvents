@@ -1,6 +1,6 @@
 using System;
 
-namespace PEPEvents.Interface
+namespace PEPEngineers.PEPEvents.Interface
 {
 	public interface ISubscriber<in TMessage> : ISubscriber where TMessage : struct, IMessage
 	{

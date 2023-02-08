@@ -1,6 +1,6 @@
-using PEPEvents.Implementation.Interfaces;
+using PEPEngineers.PEPEvents.Implementation.Interfaces;
 
-namespace PEPEvents.Implementation
+namespace PEPEngineers.PEPEvents.Implementation
 {
 	internal static class EventsManager
 	{

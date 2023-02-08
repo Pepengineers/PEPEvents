@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PEPEvents.Interface;
+using PEPEngineers.PEPEvents.Interface;
 
-namespace PEPEvents.Implementation
+namespace PEPEngineers.PEPEvents.Implementation
 {
 	internal sealed class SubscriptionFactory<T> where T : struct, IMessage
 	{
