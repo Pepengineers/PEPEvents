@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using PEPEngineers.PEPEvents.Implementation;
 using PEPEngineers.PEPEvents.Interface;
@@ -11,6 +12,21 @@ namespace PEPEngineers.PEPEvents.Extensions
 		{
 			EventsManager.Instance.Publish(message, broker);
 		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Subscribe<TMessage>(this IBroker broker, Action<TMessage> action)
+			where TMessage : struct, IMessage
+		{
+			broker.Subscribe(new ActionSubscriber<TMessage>(action));
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Subscribe<TMessage>(this IBroker<TMessage> broker, Action<TMessage> action)
+			where TMessage : struct, IMessage
+		{
+			broker.Subscribe(new ActionSubscriber<TMessage>(action));
+		}
+
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Subscribe<TMessage>(this IBroker broker, ISubscriber<TMessage> subscriber)
