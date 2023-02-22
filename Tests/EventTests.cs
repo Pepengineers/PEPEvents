@@ -47,7 +47,7 @@ namespace PEPEngineers.PEPEvents.Tests
 
 
 		[UnityTest]
-		[RequiresPlayMode()]
+		[RequiresPlayMode]
 		public IEnumerator TargetGameEventSubscription()
 		{
 			var trigger = new GameObject("TestTrigger").AddComponent<TestEventTrigger>();

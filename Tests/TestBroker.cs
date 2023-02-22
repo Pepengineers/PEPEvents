@@ -6,7 +6,6 @@ namespace PEPEngineers.PEPEvents.Tests
 	{
 		public void Shutdown()
 		{
-			
 		}
 	}
 }

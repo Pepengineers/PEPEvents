@@ -22,11 +22,11 @@ namespace PEPEngineers.PEPEvents.Implementation
 		public IEnumerable<Type> MessageTypes => subscriptions.Values.SelectMany(v => v.Keys);
 		public IEnumerable<IDisposable> Subscriptions => subscriptions.Values.SelectMany(v => v.Values);
 
-		public void AddIfNotExist(in IBroker broker,in Type type,in Func<IDisposable> unsubscribeFactory)
+		public void AddIfNotExist(in IBroker broker, in Type type, in Func<IDisposable> unsubscribeFactory)
 		{
 			if (subscriptions.TryGetValue(broker, out var brokerSubs))
 			{
-				if (brokerSubs.ContainsKey(type)) 
+				if (brokerSubs.ContainsKey(type))
 					return;
 			}
 			else
@@ -44,7 +44,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 			Count++;
 		}
 
-		public void Remove(in IBroker broker,in Type type)
+		public void Remove(in IBroker broker, in Type type)
 		{
 			if (Count <= 0) return;
 			if (subscriptions.TryGetValue(broker, out var brokerSubscriptions))
@@ -93,7 +93,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 					UnityEngine.Debug.Log(
 						$"#Events# {Subscriber.GetType().Name} unsubscribe from {pair.Key.Name} in {targetSubscriptions.Key.GetType().Name}");
 #endif
-					
+
 					pair.Value.Dispose();
 					Count--;
 				}
