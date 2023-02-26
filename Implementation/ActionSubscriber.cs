@@ -6,15 +6,22 @@ namespace PEPEngineers.PEPEvents.Implementation
 	internal sealed class ActionSubscriber<TMessage> : ISubscriber<TMessage> where TMessage : struct, IMessage
 	{
 		private readonly Action<TMessage> action;
+		private readonly ISubscriber user;
 
-		public ActionSubscriber(Action<TMessage> userAction)
+		public ActionSubscriber(ISubscriber user, Action<TMessage> userAction)
 		{
+			this.user = user;
 			action = userAction;
 		}
 
 		public void OnNext(TMessage message)
 		{
 			action(message);
+		}
+
+		public override int GetHashCode()
+		{
+			return user.GetHashCode();
 		}
 	}
 }

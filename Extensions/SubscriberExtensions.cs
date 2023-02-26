@@ -16,19 +16,19 @@ namespace PEPEngineers.PEPEvents.Extensions
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Subscribe<TMessage>([NotNull] this IBroker broker, Action<TMessage> action)
+		public static void Subscribe<TMessage>([NotNull] this IBroker broker, ISubscriber item, Action<TMessage> action)
 			where TMessage : struct, IMessage
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
-			broker.Subscribe(new ActionSubscriber<TMessage>(action));
+			broker.Subscribe(new ActionSubscriber<TMessage>(item, action));
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Subscribe<TMessage>(this IBroker<TMessage> broker, Action<TMessage> action)
+		public static void Subscribe<TMessage>(this IBroker<TMessage> broker, ISubscriber item, Action<TMessage> action)
 			where TMessage : struct, IMessage
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
-			broker.Subscribe(new ActionSubscriber<TMessage>(action));
+			broker.Subscribe(new ActionSubscriber<TMessage>(item, action));
 		}
 
 
