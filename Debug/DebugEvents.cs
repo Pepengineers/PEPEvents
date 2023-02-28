@@ -1,10 +1,14 @@
 ﻿using System.Linq;
 using System.Text;
 using PEPEngineers.PEPEvents.Implementation;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 
 namespace PEPEngineers.PEPEvents.Debug
 {
+#if UNITY_EDITOR
 	public static class DebugEvents
 	{
 		private static readonly StringBuilder Builder = new();
@@ -31,4 +35,5 @@ namespace PEPEngineers.PEPEvents.Debug
 			UnityEngine.Debug.Log(Builder.ToString());
 		}
 	}
+#endif
 }
