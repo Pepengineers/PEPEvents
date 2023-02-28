@@ -69,7 +69,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 		{
 #if UNITY_EDITOR || DEBUG
 			UnityEngine.Debug.Log(
-				$"#Events# {broker.GetType().FullName} raise event {MessagePipe<T>.MessageType.Name}");
+				$"#Events# {broker.GetType().FullName} raise event {MessagePipe<T>.MessageType.Name} : {msg.ToString()}");
 #endif
 			MessagePipe<T>.Publish(msg, broker);
 		}
