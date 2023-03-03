@@ -35,7 +35,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 				subscriptions.Add(broker, brokerSubs);
 			}
 
-#if UNITY_EDITOR || DEBUG
+#if DEBUG_LOG
 			UnityEngine.Debug.Log(
 				$"#Events# {Subscriber.GetType().Name} subscribe to {type.Name} in {broker.GetType().Name}");
 #endif
@@ -49,7 +49,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 			if (Count <= 0) return;
 			if (subscriptions.TryGetValue(broker, out var brokerSubscriptions))
 			{
-#if UNITY_EDITOR || DEBUG
+#if DEBUG_LOG
 				UnityEngine.Debug.Log(
 					$"#Events# {Subscriber.GetType().Name} unsubscribe from {type.Name} in {broker.GetType().Name}");
 #endif
@@ -70,7 +70,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 			{
 				foreach (var brokerSubscription in brokerSubscriptions)
 				{
-#if UNITY_EDITOR || DEBUG
+#if DEBUG_LOG
 					UnityEngine.Debug.Log(
 						$"#Events# {Subscriber.GetType().Name} unsubscribe from {brokerSubscription.Key.Name} in {broker.GetType().Name}");
 #endif
@@ -89,7 +89,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 			{
 				foreach (var pair in targetSubscriptions.Value)
 				{
-#if UNITY_EDITOR || DEBUG
+#if DEBUG_LOG
 					UnityEngine.Debug.Log(
 						$"#Events# {Subscriber.GetType().Name} unsubscribe from {pair.Key.Name} in {targetSubscriptions.Key.GetType().Name}");
 #endif

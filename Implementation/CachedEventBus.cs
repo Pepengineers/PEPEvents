@@ -67,7 +67,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 
 		public void Publish<T>(T msg, IBroker broker) where T : struct, IMessage
 		{
-#if UNITY_EDITOR || DEBUG
+#if DEBUG_LOG
 			UnityEngine.Debug.Log(
 				$"#Events# {broker.GetType().FullName} raise event {MessagePipe<T>.MessageType.Name} : {msg.ToString()}");
 #endif
