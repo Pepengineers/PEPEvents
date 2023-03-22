@@ -17,7 +17,7 @@ namespace PEPEngineers.PEPEvents.Runtime
 
 	public abstract class GameEventTrigger<TMessage, TEvent> : GameEventSubscriber<TMessage, TEvent>
 		where TMessage : struct, IMessage
-		where TEvent : GameEvent<TMessage>
+		where TEvent : GameEvent
 	{
 		[SerializeField] protected UnityEvent<TMessage> onGetMessage = new();
 
