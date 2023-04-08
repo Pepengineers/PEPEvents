@@ -16,4 +16,13 @@ namespace PEPEngineers.PEPEvents.Runtime
 			Event?.Invoke();
 		}
 	}
+	
+	
+	public abstract class GameEventTrigger<TMessage,TReturn> : GameEventSubscriber<TMessage>
+		where TMessage : struct, IMessage
+	{
+		[SerializeField] protected UnityEvent<TReturn> onGetMessage = new();
+
+		protected ref readonly UnityEvent<TReturn> Event => ref onGetMessage;
+	}
 }
