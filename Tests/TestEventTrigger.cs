@@ -4,16 +4,16 @@ namespace PEPEngineers.PEPEvents.Tests
 {
 	internal sealed class TestEventTrigger : GameEventTrigger<TestMessage>
 	{
-		public int Count;
+		public int count;
 
 		private void Awake()
 		{
-			onTriggered.AddListener(Call);
+			Event.AddListener(Call);
 		}
 
 		private void Call()
 		{
-			Count++;
+			count++;
 		}
 	}
 }

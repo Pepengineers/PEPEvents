@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace PEPEngineers.PEPEvents.Runtime
 {
-	public abstract class GameEventSubscriber<TMessage, TEvent> : MonoBehaviour, ISubscriber<TMessage>
+	public abstract class GameEventSubscriber<TMessage> : MonoBehaviour, ISubscriber<TMessage>
 		where TMessage : struct, IMessage
-		where TEvent : GameEvent
 	{
-		[SerializeField] private TEvent gameEvent;
-		public ref readonly TEvent GameEvent => ref gameEvent;
+		[SerializeField] private GameEvent gameEvent;
+		public ref readonly GameEvent GameEvent => ref gameEvent;
 
 		protected virtual void OnEnable()
 		{

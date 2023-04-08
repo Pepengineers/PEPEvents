@@ -4,26 +4,16 @@ using UnityEngine.Events;
 
 namespace PEPEngineers.PEPEvents.Runtime
 {
-	public abstract class GameEventTrigger<TMessage> : GameEventSubscriber<TMessage, GameEvent>
+	public abstract class GameEventTrigger<TMessage> : GameEventSubscriber<TMessage>
 		where TMessage : struct, IMessage
 	{
-		[SerializeField] protected UnityEvent onTriggered = new();
+		[SerializeField] private UnityEvent onTriggered = new();
+
+		protected ref readonly UnityEvent Event => ref onTriggered;
 
 		public sealed override void OnNext(TMessage message)
 		{
-			onTriggered?.Invoke();
-		}
-	}
-
-	public abstract class GameEventTrigger<TMessage, TEvent> : GameEventSubscriber<TMessage, TEvent>
-		where TMessage : struct, IMessage
-		where TEvent : GameEvent
-	{
-		[SerializeField] protected UnityEvent<TMessage> onGetMessage = new();
-
-		public sealed override void OnNext(TMessage message)
-		{
-			onGetMessage?.Invoke(message);
+			Event?.Invoke();
 		}
 	}
 }

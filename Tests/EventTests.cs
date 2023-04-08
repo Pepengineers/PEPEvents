@@ -56,7 +56,7 @@ namespace PEPEngineers.PEPEvents.Tests
 
 			broker.Publish(message);
 
-			Assert.AreEqual(trigger.Count, 1);
+			Assert.AreEqual(trigger.count, 1);
 		}
 	}
 }
