@@ -50,7 +50,7 @@ namespace PEPEngineers.PEPEvents.Tests
 		[RequiresPlayMode]
 		public IEnumerator TargetGameEventSubscription()
 		{
-			var trigger = new GameObject("TestTrigger").AddComponent<TestEventTrigger>();
+			var trigger = new GameObject("TestTrigger").AddComponent<TestEventSubscriber>();
 			broker.Subscribe(trigger);
 			yield return null;
 

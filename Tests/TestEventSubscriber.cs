@@ -2,7 +2,7 @@
 
 namespace PEPEngineers.PEPEvents.Tests
 {
-	internal sealed class TestEventTrigger : GameEventTrigger<TestMessage>
+	internal sealed class TestEventSubscriber : UnityEventSubscriber<TestMessage>
 	{
 		public int count;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PEPEngineers.PEPEvents.Runtime
 {
-	public abstract class GameEventSubscriber<TMessage> : MonoBehaviour, ISubscriber<TMessage>
+	public abstract class EventSubscriber<TMessage> : MonoBehaviour, ISubscriber<TMessage>
 		where TMessage : struct, IMessage
 	{
 		[SerializeField] private GameEvent gameEvent;
@@ -27,7 +27,6 @@ namespace PEPEngineers.PEPEvents.Runtime
 		{
 			this.UnsubscribeAll();
 		}
-
 
 		public abstract void OnNext(TMessage message);
 	}
