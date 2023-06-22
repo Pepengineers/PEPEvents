@@ -2,13 +2,13 @@
 
 namespace PEPEngineers.PEPEvents.Tests
 {
-	internal sealed class TestEventSubscriber : UnityEventSubscriber<TestMessage>
+	internal sealed class TestEventSubscriber : GameEventSubscriber<TestMessage>
 	{
 		public int count;
 
 		private void Awake()
 		{
-			Event.AddListener(Call);
+			Delegate.AddListener(Call);
 		}
 
 		private void Call()

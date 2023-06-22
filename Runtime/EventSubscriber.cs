@@ -8,7 +8,7 @@ namespace PEPEngineers.PEPEvents.Runtime
 		where TMessage : struct, IMessage
 	{
 		[SerializeField] private GameEvent gameEvent;
-		public ref readonly GameEvent GameEvent => ref gameEvent;
+		public IBroker GameEvent => gameEvent;
 
 		protected virtual void OnEnable()
 		{

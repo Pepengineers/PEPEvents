@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace PEPEngineers.PEPEvents.Runtime
 {
-	public abstract class EventTrigger<TMessage> : MonoBehaviour where TMessage : struct, IMessage
+	public abstract class GameEventTrigger<TMessage> : MonoBehaviour where TMessage : struct, IMessage
 	{
 		[SerializeField] private GameEvent gameEvent;
-		public ref readonly GameEvent GameEvent => ref gameEvent;
 
 		public void Raise(TMessage message)
 		{
