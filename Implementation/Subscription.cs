@@ -4,7 +4,7 @@ using PEPEngineers.PEPEvents.Interface;
 
 namespace PEPEngineers.PEPEvents.Implementation
 {
-	internal sealed class Subscription<T> : IDisposable where T : struct, IMessage
+	internal sealed class Subscription<T> : IDisposable 
 	{
 		private readonly ICollection<Subscription<T>> pool;
 

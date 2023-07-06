@@ -5,7 +5,7 @@ using PEPEngineers.PEPEvents.Interface;
 
 namespace PEPEngineers.PEPEvents.Implementation
 {
-	internal static class MessagePipe<TMessage> where TMessage : struct, IMessage
+	internal static class MessagePipe<TMessage> 
 	{
 		private static readonly SubscriptionFactory<TMessage> Subscription = new();
 

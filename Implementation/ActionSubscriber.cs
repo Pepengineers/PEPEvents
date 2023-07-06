@@ -3,7 +3,7 @@ using PEPEngineers.PEPEvents.Interface;
 
 namespace PEPEngineers.PEPEvents.Implementation
 {
-	internal sealed class ActionSubscriber<TMessage> : ISubscriber<TMessage> where TMessage : struct, IMessage
+	internal sealed class ActionSubscriber<TMessage> : ISubscriber<TMessage> 
 	{
 		private readonly Action<TMessage> action;
 		private readonly ISubscriber user;

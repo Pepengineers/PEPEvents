@@ -10,7 +10,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 		private readonly Dictionary<ISubscriber, TargetSubscriptions> userSubscriptions = new();
 		public IReadOnlyCollection<ISubscriptions> Subscriptions => userSubscriptions.Values;
 
-		public void Unsubscribe<T>(IBroker broker, ISubscriber<T> subscriber) where T : struct, IMessage
+		public void Unsubscribe<T>(IBroker broker, ISubscriber<T> subscriber)
 		{
 			if (userSubscriptions.TryGetValue(subscriber, out var subscriptions) == false) return;
 
@@ -45,7 +45,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 			}
 		}
 
-		public void Subscribe<T>(IBroker broker, ISubscriber<T> subscriber) where T : struct, IMessage
+		public void Subscribe<T>(IBroker broker, ISubscriber<T> subscriber)
 		{
 			if (userSubscriptions.TryGetValue(subscriber, out var targetUserSubscriptions) == false)
 			{
@@ -65,7 +65,7 @@ namespace PEPEngineers.PEPEvents.Implementation
 				() => MessagePipe<T>.Subscribe(broker, subscriber));
 		}
 
-		public void Publish<T>(T msg, IBroker broker) where T : struct, IMessage
+		public void Publish<T>(T msg, IBroker broker)
 		{
 #if DEBUG_LOG
 			UnityEngine.Debug.Log(

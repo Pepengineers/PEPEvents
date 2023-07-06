@@ -4,7 +4,7 @@ namespace PEPEngineers.PEPEvents.Interface
 	{
 	}
 
-	public interface IBroker<T> : IBroker where T : struct, IMessage
+	public interface IBroker<T> : IBroker
 	{
 	}
 }

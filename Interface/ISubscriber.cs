@@ -2,7 +2,7 @@ using System;
 
 namespace PEPEngineers.PEPEvents.Interface
 {
-	public interface ISubscriber<in TMessage> : ISubscriber where TMessage : struct, IMessage
+	public interface ISubscriber<in TMessage> : ISubscriber
 	{
 		void OnNext(TMessage message);
 	}

@@ -9,7 +9,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 	public static class SubscriberExtensions
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void Publish<T>([NotNull] this IBroker broker, T message) where T : struct, IMessage
+		public static void Publish<T>([NotNull] this IBroker broker, T message)
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
 			EventsManager.Instance.Publish(message, broker);
@@ -17,7 +17,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Subscribe<TMessage>([NotNull] this IBroker broker, ISubscriber item, Action<TMessage> action)
-			where TMessage : struct, IMessage
+			
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
 			broker.Subscribe(new ActionSubscriber<TMessage>(item, action));
@@ -25,7 +25,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Subscribe<TMessage>(this IBroker<TMessage> broker, ISubscriber item, Action<TMessage> action)
-			where TMessage : struct, IMessage
+			
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
 			broker.Subscribe(new ActionSubscriber<TMessage>(item, action));
@@ -34,7 +34,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Subscribe<TMessage>(this IBroker broker, ISubscriber<TMessage> subscriber)
-			where TMessage : struct, IMessage
+			
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
 			if (subscriber == null) throw new ArgumentNullException(nameof(subscriber));
@@ -43,7 +43,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Subscribe<TMessage>(this IBroker<TMessage> broker, ISubscriber<TMessage> subscriber)
-			where TMessage : struct, IMessage
+			
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
 			if (subscriber == null) throw new ArgumentNullException(nameof(subscriber));
@@ -53,7 +53,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Unsubscribe<TMessage>(this ISubscriber<TMessage> subscriber, IBroker broker)
-			where TMessage : struct, IMessage
+			
 		{
 			if (broker == null) throw new ArgumentNullException(nameof(broker));
 			if (subscriber == null) throw new ArgumentNullException(nameof(subscriber));
@@ -62,7 +62,7 @@ namespace PEPEngineers.PEPEvents.Extensions
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Unsubscribe<TMessage>(this IBroker broker, ISubscriber<TMessage> subscriber)
-			where TMessage : struct, IMessage
+			
 		{
 			Unsubscribe(subscriber, broker);
 		}

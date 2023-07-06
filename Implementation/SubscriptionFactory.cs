@@ -5,7 +5,7 @@ using PEPEngineers.PEPEvents.Interface;
 
 namespace PEPEngineers.PEPEvents.Implementation
 {
-	internal sealed class SubscriptionFactory<T> where T : struct, IMessage
+	internal sealed class SubscriptionFactory<T> 
 	{
 		private readonly List<Subscription<T>> freeSubscriptions = new();
 

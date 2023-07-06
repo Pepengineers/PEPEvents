@@ -1,28 +1,17 @@
-﻿using PEPEngineers.PEPEvents.Interface;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace PEPEngineers.PEPEvents.Runtime
 {
 	public abstract class GameEventSubscriber<TMessage> : EventSubscriber<TMessage>
-		where TMessage : struct, IMessage
 	{
-		[SerializeField] private UnityEvent onTriggered = new();
+		[SerializeField] private UnityEvent<TMessage> onGetMessage = new();
 
-		protected ref readonly UnityEvent Delegate => ref onTriggered;
+		protected ref readonly UnityEvent<TMessage> Event => ref onGetMessage;
 
 		public sealed override void OnNext(TMessage message)
 		{
-			Delegate?.Invoke();
+			onGetMessage?.Invoke(message);
 		}
-	}
-	
-	
-	public abstract class GameEventSubscriber<TMessage, TUnityEventType> : EventSubscriber<TMessage>
-		where TMessage : struct, IMessage
-	{
-		[SerializeField] protected UnityEvent<TUnityEventType> onGetMessage = new();
-
-		protected ref readonly UnityEvent<TUnityEventType> Event => ref onGetMessage;
 	}
 }
