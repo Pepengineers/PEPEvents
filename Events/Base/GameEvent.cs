@@ -10,7 +10,7 @@ namespace PEPEngineers.PEPEvents.Events.Base
 
 	public abstract class GameEvent<T> : GameEvent, IBroker<T>
 	{
-		public void Trigger(T message)
+		public virtual void Trigger(T message)
 		{
 			this.Publish(message);
 		}
